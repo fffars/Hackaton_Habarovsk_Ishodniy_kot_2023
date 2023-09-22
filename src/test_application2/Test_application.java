@@ -42,9 +42,8 @@ public class Test_application extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/2023-09-22_19-44-30.png"))); // NOI18N
         jLabel1.setName(""); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(21, 100, 192));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(21, 100, 192));
         jButton1.setText("Открыть файл");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -53,15 +52,13 @@ public class Test_application extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(21, 100, 192));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(21, 100, 192));
         jButton3.setText("Сохранить CSV файл");
         jButton3.setBorder(null);
 
-        jButton2.setBackground(new java.awt.Color(21, 100, 192));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(21, 100, 192));
         jButton2.setText("Запустить");
         jButton2.setBorder(null);
 
