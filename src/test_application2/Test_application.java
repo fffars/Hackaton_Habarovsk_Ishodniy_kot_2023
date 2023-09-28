@@ -35,6 +35,7 @@ public class Test_application extends javax.swing.JFrame {
     
     String filePath;
     StringBuilder string = new StringBuilder();
+    Process p;
 
     /**
      * Creates new form NewJFrame
@@ -65,6 +66,11 @@ public class Test_application extends javax.swing.JFrame {
         setTitle("Test_Application");
         setBackground(new java.awt.Color(21, 58, 87));
         setForeground(new java.awt.Color(255, 51, 51));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(21, 58, 87));
 
@@ -197,10 +203,10 @@ ByteBuffer srcBuffer = ByteBuffer.wrap(str);
 //        string.append("Имя файла: ");
 //        jTextPane1.setText(string.toString());
         
-        Process p;
+        
         try {
             p = new ProcessBuilder(
-                    "python", "script.py").start();
+                    "streamlit", "run", "script.py").start();
         
         // receive from child
         new Thread(() -> {
@@ -237,11 +243,11 @@ ByteBuffer srcBuffer = ByteBuffer.wrap(str);
         } catch (IOException ex) {
             Logger.getLogger(Test_application.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            p.waitFor();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Test_application.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            p.waitFor();
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Test_application.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 //        try {
 ////            Process start = p.start();
 ////            start.getOutputStream();
@@ -253,6 +259,10 @@ ByteBuffer srcBuffer = ByteBuffer.wrap(str);
         }
 //        jLabel2.setIcon(new ImageIcon("histogram.png"));
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        p.destroy();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
