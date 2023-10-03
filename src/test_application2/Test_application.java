@@ -8,7 +8,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.statistics.HistogramDataset;
-import org.apache.commons.io.FilenameUtils;
+//import org.apache.commons.io.FilenameUtils;
 
 
 import java.io.File;
@@ -205,8 +205,11 @@ ByteBuffer srcBuffer = ByteBuffer.wrap(str);
         
         
         try {
-            p = new ProcessBuilder(
-                    "streamlit", "run", "script.py").start();
+            ProcessBuilder pb = new ProcessBuilder();
+            p = pb.command(".venv\\Scripts\\activate.bat\\").start();
+            p.waitFor();
+            p = pb.command("streamlit", "run", "script.py").start();
+            // "streamlit", "run", "script.py"
         
         // receive from child
         new Thread(() -> {
@@ -255,6 +258,8 @@ ByteBuffer srcBuffer = ByteBuffer.wrap(str);
 //            Logger.getLogger(Test_application.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         } catch (IOException ex) {
+            Logger.getLogger(Test_application.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(Test_application.class.getName()).log(Level.SEVERE, null, ex);
         }
 //        jLabel2.setIcon(new ImageIcon("histogram.png"));
@@ -343,30 +348,25 @@ ByteBuffer srcBuffer = ByteBuffer.wrap(str);
     // End of variables declaration//GEN-END:variables
 }
 
-class MyFilter extends FileFilter
-{
+class MyFilter extends FileFilter {
 
     @Override
     public boolean accept(File f) {
         if (f.isDirectory()) {
- return true;
- }
+            return true;
+        }
 
- String extension = FilenameUtils.getExtension(f.getName());
- if (extension != null) {
- if (extension.equals("mp4")) {
- return true;
- } else {
- return false;
- }
- }
-
- return false;
+// String extension = FilenameUtils.getExtension(f.getName());
+// if (extension != null) {
+        if (f.getName().substring(f.getName().lastIndexOf(".") + 1).equals("mp4")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public String getDescription() {
         return "Видео в формате mp4";
     }
-    
 }
