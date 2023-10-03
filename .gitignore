@@ -1,3 +1,8 @@
 
 123.iss
 Output/mysetup.exe
+.venv/*
+build/*
+catboost_info/*
+dist/*
+venv.7z
